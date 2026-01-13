@@ -7,6 +7,7 @@ import connectDB from "./config/db-connect.js";
 import blogRouter from "./routes/blog-router.js";
 import userRouter from "./routes/user-router.js";
 import analyticsRouter from "./routes/analytics-router.js";
+import exportRouter from "./routes/export-router.js";
 
 
 const app: Application = express();
@@ -26,6 +27,7 @@ connectDB();
 app.use("/api/user", userRouter);
 app.use("/api/blog", blogRouter);
 app.use("/api/analytics", analyticsRouter);
+app.use("/api/export", exportRouter);
 
 app.get("/", (req: Request, res: Response) => {
     res.send("Working");
