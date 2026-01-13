@@ -40,8 +40,7 @@ export const exportUsersToExcel = async (req: Request, res: Response) => {
       if (endDate) filter.createdAt.$lte = new Date(endDate as string);
     }
 
-
-    const users = await User.find(filter).select("-password").lean();
+    const users = await User.find(filter).limit(count ? Number(count) : 0).select("-password").lean();
 
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet("Users");
